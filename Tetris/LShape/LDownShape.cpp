@@ -1,6 +1,6 @@
 #include "LDownShape.h"
 #include "LLeftShape.h"
-#include "Common.h"
+#include "../Common.h"
 #include <iostream>
 LDownShape::LDownShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[0][0] = true;

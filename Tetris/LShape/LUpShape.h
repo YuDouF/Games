@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "../Component.h"
 class LUpShape : public Component{
 	bool m_location[3][2];
 public:

@@ -9,8 +9,9 @@ public:
 	Component(Direction direction);
 	virtual ~Component();
 	virtual Component* ChangeShapeDirection(Component*& shapeDirection);
-	void Move(Direction direction);
 	virtual void Display();
+
+	void Move(Direction direction);
 	void SetDirection(Direction direction);
 	Direction GetDirection();
 

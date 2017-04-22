@@ -1,6 +1,6 @@
 #include "LRightShape.h"
 #include "LDownShape.h"
-#include "Common.h"
+#include "../Common.h"
 #include <iostream>
 LRightShape::LRightShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[0][0] = true;
