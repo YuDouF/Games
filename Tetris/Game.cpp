@@ -15,17 +15,22 @@ Game::Game(){
 	srand(time(0));
 	int current = rand() % 5;
 	int next = rand() % 5;
-	m_currentComponent = new ZVShape(20, 15);
+	m_currentComponent = new ZVShape(36, 15);
 	m_nextComponent = new ZVShape(20, 10);
 	for (int i = 0; i < GAME_WIDTH; ++i){
 		m_bottomLine[i] = GAME_HEIGHT - 1;
 	}
+	std::vector<int> leftLine;
+	std::vector<int> rightLine;
+
 	for (int i = 0; i < GAME_HEIGHT; ++i){
-		m_leftLine[i] = 1;
+		leftLine.push_back(0);
 	}
 	for (int i = 0; i < GAME_HEIGHT; ++i){
-		m_rightLine[i] = GAME_WIDTH - 1;
+		rightLine.push_back(GAME_WIDTH);
 	}
+	m_VLine.push_back(leftLine);
+	m_VLine.push_back(rightLine);
 	/*m_timer = Timer::GetInstant();
 	m_timer->SetGame(this);
 	m_timer->SetUpdateFunc(&Game::UpdateGame);*/
@@ -87,17 +92,7 @@ void Game::ComponentMove(Direction direction){
 }
 bool Game::StopComponent(Direction direction){
 	std::vector<Point*> border;
-	switch (direction){
-	case RIGHT:
-		border = m_currentComponent->GetRightBorder();
-		for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
-			Point* point = (*it);
-			if (m_rightLine[point->GetY() - 1] == point->GetX()){
-				return true;
-			}
-		}
-		break;
-	case DOWN:
+	if (direction == DOWN){
 		border = m_currentComponent->GetBottomBorder();
 		for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
 			Point* point = (*it);
@@ -105,16 +100,24 @@ bool Game::StopComponent(Direction direction){
 				return true;
 			}
 		}
-		break;
-	case LEFT:
-		border = m_currentComponent->GetLeftBorder();
-		for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
-			Point* point = (*it);
-			if (m_leftLine[point->GetY() - 1] == point->GetX()){
-				return true;
+	}
+	else{
+		for (std::vector<std::vector<int>>::iterator it = m_VLine.begin(); it != m_VLine.end(); ++it){
+			border = m_currentComponent->GetRightBorder();
+			for (std::vector<Point*>::iterator i = border.begin(); i != border.end(); ++i){
+				Point* point = (*i);
+				if (it->at(point->GetY() - 1) == point->GetX()){
+					return true;
+				}
+			}
+			border = m_currentComponent->GetLeftBorder();
+			for (std::vector<Point*>::iterator i = border.begin(); i != border.end(); ++i){
+				Point* point = (*i);
+				if (it->at(point->GetY() - 1) == point->GetX()){
+					return true;
+				}
 			}
 		}
-		break;
 	}
 
 	return false;
@@ -123,7 +126,7 @@ void Game::UpdataBorder(){
 	std::vector<Point*> border = m_currentComponent->GetUpBorder();
 	for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
 		Point* point = (*it);
-		m_bottomLine[point->GetX() - 1] = point->GetY() - 1;
+		m_bottomLine[point->GetX() - 1] = point->GetY();
 	}
 }
 void Game::Update(){
