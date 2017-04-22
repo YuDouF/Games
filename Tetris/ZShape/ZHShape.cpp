@@ -1,6 +1,7 @@
 #include "ZHShape.h"
 #include "ZVShape.h"
 #include "../Common.h"
+#include "../Point.h"
 #include <iostream>
 ZHShape::ZHShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[0][0] = true;
@@ -17,6 +18,17 @@ void ZHShape::ChangeShapeDirection(Component*& shapeDirection){
 	delete shapeDirection;
 	
 	shapeDirection = new ZVShape(parentX, parentY);
+}
+std::vector<Point*> ZHShape::GetBottomLine(){
+	std::vector<Point*> bottomLine;
+	Point* first = new Point(m_parentX, m_parentY);
+	Point* second = new Point(m_parentX + 1, m_parentY + 1);
+	Point* third = new Point(m_parentX + 2, m_parentY + 1);
+	bottomLine.push_back(first);
+	bottomLine.push_back(second);
+	bottomLine.push_back(third);
+
+	return bottomLine;
 }
 void ZHShape::Display(){
 	for (int y = 0; y < 2; ++y){

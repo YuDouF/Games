@@ -9,9 +9,9 @@
 #include <iostream>
 
 int main(){
+	
 	Game* game = new Game();
 	game->StartGame();
-
 	char ch;
 	ch = getch();
 	while (ch = getch()){

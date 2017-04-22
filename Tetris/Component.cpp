@@ -21,3 +21,15 @@ void Component::Move(Component*& comp, Direction direction){
 	}
 	Display();
 }
+void Component::SetParentX(int x){
+	m_parentX = x;
+}
+int Component::GetParentX(){
+	return m_parentX;
+}
+void Component::SetParentY(int y){
+	m_parentY = y;
+}
+int Component::GetParentY(){
+	return m_parentY;
+}
