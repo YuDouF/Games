@@ -3,7 +3,7 @@
 #include "TShape\TUpShape.h"
 #include "IShape\IHShape.h"
 #include "ZShape\ZVShape.h"
-#include "HShape.h"
+#include "HShape\HShape.h"
 #include <iostream>
 
 int main(){

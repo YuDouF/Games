@@ -1,5 +1,5 @@
 #include "HShape.h"
-#include "Common.h"
+#include "../Common.h"
 #include <iostream>
 HShape::HShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[0][0] = true;

@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "../Component.h"
 class HShape : public Component{
 	bool m_location[2][2];
 public:
