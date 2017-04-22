@@ -1,12 +1,14 @@
 #include "Component.h"
 Component::Component(int parentX, int parentY) : m_parentX(parentX), m_parentY(parentY){}
-Component::Component(Direction direction) : m_direction(direction){}
+
 Component::~Component(){}
-Component* Component::ChangeShapeDirection(Component*& shapeDirection){
-	return NULL;
-}
-void Component::Move(Direction direction){
+
+void Component::Move(Component* comp, Direction direction){
+	Clean();
 	switch (direction){
+	case UP:
+		ChangeShapeDirection(comp);
+		break;
 	case RIGHT:
 		++m_parentX;
 		break;
@@ -17,11 +19,5 @@ void Component::Move(Direction direction){
 		--m_parentX;
 		break;
 	}
-}
-void Component::Display(){}
-void Component::SetDirection(Direction direction){
-	m_direction = direction;
-}
-Direction Component::GetDirection(){
-	return m_direction;
+	Display();
 }

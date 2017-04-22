@@ -8,6 +8,9 @@ HShape::HShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[1][1] = true;
 }
 HShape::~HShape(){}
+Component* HShape::ChangeShapeDirection(Component*& shapeDirection){
+	return this;
+}
 void HShape::Display(){
 	for (int y = 0; y < 2; ++y){
 		for (int x = 0; x < 2; ++x){
