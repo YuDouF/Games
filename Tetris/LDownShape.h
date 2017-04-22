@@ -1,10 +1,10 @@
 #pragma once
 #include "Component.h"
-class LRightShape : public Component{
-	bool m_location[2][3];
+class LDownShape : public Component{
+	bool m_location[3][2];
 public:
-	LRightShape(int parentX, int parentY);
-	~LRightShape();
+	LDownShape(int parentX, int parentY);
+	~LDownShape();
 	Component* ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();

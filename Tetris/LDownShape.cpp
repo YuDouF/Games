@@ -1,26 +1,26 @@
-#include "LUpShape.h"
-#include "LRightShape.h"
+#include "LDownShape.h"
+#include "LLeftShape.h"
 #include "Common.h"
 #include <iostream>
-LUpShape::LUpShape(int parentX, int parentY) : Component(parentX, parentY){
+LDownShape::LDownShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[0][0] = true;
-	m_location[0][1] = false;
-	m_location[1][0] = true;
-	m_location[1][1] = false;
-	m_location[2][0] = true;
+	m_location[0][1] = true;
+	m_location[1][0] = false;
+	m_location[1][1] = true;
+	m_location[2][0] = false;
 	m_location[2][1] = true;
 }
-LUpShape::~LUpShape(){}
-Component* LUpShape::ChangeShapeDirection(Component*& shapeDirection){
+LDownShape::~LDownShape(){}
+Component* LDownShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
-	
-	shapeDirection = new LRightShape(parentX, parentY);
+
+	shapeDirection = new LLeftShape(parentX, parentY);
 	return shapeDirection;
 }
-void LUpShape::Display(){
+void LDownShape::Display(){
 	for (int y = 0; y < 3; ++y){
 		for (int x = 0; x < 2; ++x){
 			if (m_location[y][x]){
@@ -30,7 +30,7 @@ void LUpShape::Display(){
 		}
 	}
 }
-void LUpShape::Clean(){
+void LDownShape::Clean(){
 	for (int y = 0; y < 3; ++y){
 		for (int x = 0; x < 2; ++x){
 			if (m_location[y][x]){
