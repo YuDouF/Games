@@ -5,7 +5,7 @@ class TUpShape : public Component{
 public:
 	TUpShape(int parentX, int parentY);
 	~TUpShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 };

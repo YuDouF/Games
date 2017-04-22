@@ -11,14 +11,13 @@ LLeftShape::LLeftShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[1][2] = true;
 }
 LLeftShape::~LLeftShape(){}
-Component* LLeftShape::ChangeShapeDirection(Component*& shapeDirection){
+void LLeftShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new LUpShape(parentX, parentY);
-	return shapeDirection;
 }
 void LLeftShape::Display(){
 	for (int y = 0; y < 2; ++y){

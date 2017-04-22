@@ -5,7 +5,7 @@ class LUpShape : public Component{
 public:
 	LUpShape(int parentX, int parentY);
 	~LUpShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 };

@@ -11,14 +11,13 @@ TRightShape::TRightShape(int parentX, int parentY) : Component(parentX, parentY)
 	m_location[2][1] = true;
 }
 TRightShape::~TRightShape(){}
-Component* TRightShape::ChangeShapeDirection(Component*& shapeDirection){
+void TRightShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new TDownShape(parentX, parentY);
-	return shapeDirection;
 }
 void TRightShape::Display(){
 	for (int y = 0; y < 3; ++y){

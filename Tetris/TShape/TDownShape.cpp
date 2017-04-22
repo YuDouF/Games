@@ -11,14 +11,13 @@ TDownShape::TDownShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[1][0] = true;
 }
 TDownShape::~TDownShape(){}
-Component* TDownShape::ChangeShapeDirection(Component*& shapeDirection){
+void TDownShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new TLeftShape(parentX, parentY);
-	return shapeDirection;
 }
 void TDownShape::Display(){
 	for (int y = 0; y < 2; ++y){

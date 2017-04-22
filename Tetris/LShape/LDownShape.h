@@ -5,7 +5,7 @@ class LDownShape : public Component{
 public:
 	LDownShape(int parentX, int parentY);
 	~LDownShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 private:

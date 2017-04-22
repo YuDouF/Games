@@ -11,14 +11,13 @@ LRightShape::LRightShape(int parentX, int parentY) : Component(parentX, parentY)
 	m_location[1][2] = false;
 }
 LRightShape::~LRightShape(){}
-Component* LRightShape::ChangeShapeDirection(Component*& shapeDirection){
+void LRightShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new LDownShape(parentX, parentY);
-	return shapeDirection;
 }
 void LRightShape::Display(){
 	for (int y = 0; y < 2; ++y){

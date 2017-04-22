@@ -11,14 +11,13 @@ TUpShape::TUpShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[1][2] = false;
 }
 TUpShape::~TUpShape(){}
-Component* TUpShape::ChangeShapeDirection(Component*& shapeDirection){
+void TUpShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
-	
+
 	shapeDirection = new TRightShape(parentX, parentY);
-	return shapeDirection;
 }
 void TUpShape::Display(){
 	for (int y = 0; y < 2; ++y){

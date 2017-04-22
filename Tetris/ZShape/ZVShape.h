@@ -5,7 +5,7 @@ class ZVShape : public Component{
 public:
 	ZVShape(int parentX, int parentY);
 	~ZVShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 private:

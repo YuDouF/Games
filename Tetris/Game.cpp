@@ -12,15 +12,15 @@ Game::Game(){
 	//Òþ²Ø¹â±ê
 	CONSOLE_CURSOR_INFO cursor_info = { 1, 0 };
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
-	srand(0);
+	srand(time(0));
 	int current = rand() % 5;
 	int next = rand() % 5;
-	m_currentComponent = CreateComponent(current);
-	m_nextComponent = CreateComponent(next);
+	m_currentComponent = CreateComponent(ZSHAPE);
+	m_nextComponent = CreateComponent(LSHAPE);
 
-	m_timer = Timer::GetInstant();
+	/*m_timer = Timer::GetInstant();
 	m_timer->SetGame(this);
-	m_timer->SetUpdateFunc(&Game::UpdateGame);
+	m_timer->SetUpdateFunc(&Game::UpdateGame);*/
 }
 Game::~Game(){}
 Component* Game::CreateComponent(int type){

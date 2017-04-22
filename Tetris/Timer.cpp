@@ -9,8 +9,7 @@ DWORD WINAPI funproc(LPVOID lpparentet)
 	while (!timer->m_close){
 		endTime = clock();
 		if (endTime - startTime >= timer->m_speed){
-			(timer->m_game->*(timer->m_updateFunc))();
-			endTime = startTime = clock();
+		
 		}
 	}
 	return 0;

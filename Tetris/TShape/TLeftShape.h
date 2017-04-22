@@ -5,7 +5,7 @@ class TLeftShape : public Component{
 public:
 	TLeftShape(int parentX, int parentY);
 	~TLeftShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 private:

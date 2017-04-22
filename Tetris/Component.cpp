@@ -3,11 +3,11 @@ Component::Component(int parentX, int parentY) : m_parentX(parentX), m_parentY(p
 
 Component::~Component(){}
 
-void Component::Move(Component* comp, Direction direction){
+void Component::Move(Component*& comp, Direction direction){
 	Clean();
 	switch (direction){
 	case UP:
-		ChangeShapeDirection(comp);
+		comp->ChangeShapeDirection(comp);
 		break;
 	case RIGHT:
 		++m_parentX;

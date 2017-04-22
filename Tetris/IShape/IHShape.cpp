@@ -8,14 +8,13 @@ IHShape::IHShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[0][2] = true;
 }
 IHShape::~IHShape(){}
-Component* IHShape::ChangeShapeDirection(Component*& shapeDirection){
+void IHShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new IVShape(++parentX, parentY);
-	return shapeDirection;
 }
 void IHShape::Display(){
 	for (int y = 0; y < 1; ++y){

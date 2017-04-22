@@ -5,7 +5,7 @@ class HShape : public Component{
 public:
 	HShape(int parentX, int parentY);
 	~HShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 };

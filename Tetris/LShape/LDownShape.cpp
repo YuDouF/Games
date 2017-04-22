@@ -11,14 +11,13 @@ LDownShape::LDownShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[2][1] = true;
 }
 LDownShape::~LDownShape(){}
-Component* LDownShape::ChangeShapeDirection(Component*& shapeDirection){
+void LDownShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new LLeftShape(parentX, parentY);
-	return shapeDirection;
 }
 void LDownShape::Display(){
 	for (int y = 0; y < 3; ++y){

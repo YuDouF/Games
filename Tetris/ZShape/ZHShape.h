@@ -5,7 +5,7 @@ class ZHShape : public Component{
 public:
 	ZHShape(int parentX, int parentY);
 	~ZHShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 };

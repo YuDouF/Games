@@ -5,7 +5,7 @@ class IVShape : public Component{
 public:
 	IVShape(int parentX, int parentY);
 	~IVShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 private:

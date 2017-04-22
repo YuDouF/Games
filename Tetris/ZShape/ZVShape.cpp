@@ -11,14 +11,12 @@ ZVShape::ZVShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[2][1] = false;
 }
 ZVShape::~ZVShape(){}
-Component* ZVShape::ChangeShapeDirection(Component*& shapeDirection){
+void ZVShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
-	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new ZHShape(parentX, parentY);
-	return shapeDirection;
 }
 void ZVShape::Display(){
 	for (int y = 0; y < 3; ++y){

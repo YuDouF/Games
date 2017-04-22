@@ -5,7 +5,7 @@ class LRightShape : public Component{
 public:
 	LRightShape(int parentX, int parentY);
 	~LRightShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 private:

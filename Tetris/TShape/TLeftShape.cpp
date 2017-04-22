@@ -11,14 +11,13 @@ TLeftShape::TLeftShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[2][1] = false;
 }
 TLeftShape::~TLeftShape(){}
-Component* TLeftShape::ChangeShapeDirection(Component*& shapeDirection){
+void TLeftShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 
 	shapeDirection = new TUpShape(parentX, parentY);
-	return shapeDirection;
 }
 void TLeftShape::Display(){
 	for (int y = 0; y < 3; ++y){

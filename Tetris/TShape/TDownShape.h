@@ -5,7 +5,7 @@ class TDownShape : public Component{
 public:
 	TDownShape(int parentX, int parentY);
 	~TDownShape();
-	Component* ChangeShapeDirection(Component*& shapeDirection);
+	void ChangeShapeDirection(Component*& shapeDirection);
 	void Display();
 	void Clean();
 private:

@@ -11,14 +11,13 @@ LUpShape::LUpShape(int parentX, int parentY) : Component(parentX, parentY){
 	m_location[2][1] = true;
 }
 LUpShape::~LUpShape(){}
-Component* LUpShape::ChangeShapeDirection(Component*& shapeDirection){
+void LUpShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
 	Clean();
 	delete shapeDirection;
 	
 	shapeDirection = new LRightShape(parentX, parentY);
-	return shapeDirection;
 }
 void LUpShape::Display(){
 	for (int y = 0; y < 3; ++y){
