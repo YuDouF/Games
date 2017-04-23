@@ -18,19 +18,18 @@ Game::Game(){
 	m_currentComponent = new ZVShape(36, 15);
 	m_nextComponent = new ZVShape(20, 10);
 	for (int i = 0; i < GAME_WIDTH; ++i){
-		m_bottomLine[i] = GAME_HEIGHT - 1;
+		m_bottomLine[i] = GAME_HEIGHT;
 	}
-	std::vector<int> leftLine;
-	std::vector<int> rightLine;
-
+	std::map<int, bool> leftLine;
 	for (int i = 0; i < GAME_HEIGHT; ++i){
-		leftLine.push_back(0);
+		leftLine.insert(std::pair<int, bool>(i, false));
 	}
+	std::map<int, bool> rightLine;
 	for (int i = 0; i < GAME_HEIGHT; ++i){
-		rightLine.push_back(GAME_WIDTH);
+		rightLine.insert(std::pair<int, bool>(i, false));
 	}
-	m_VLine.push_back(leftLine);
-	m_VLine.push_back(rightLine);
+	m_VMap.insert(std::pair<int, std::map<int, bool>>(0, leftLine));
+	m_VMap.insert(std::pair<int, std::map<int, bool>>(GAME_WIDTH, rightLine));
 	/*m_timer = Timer::GetInstant();
 	m_timer->SetGame(this);
 	m_timer->SetUpdateFunc(&Game::UpdateGame);*/
@@ -91,9 +90,8 @@ void Game::ComponentMove(Direction direction){
 	}
 }
 bool Game::StopComponent(Direction direction){
-	std::vector<Point*> border;
 	if (direction == DOWN){
-		border = m_currentComponent->GetBottomBorder();
+		std::vector<Point*> border = m_currentComponent->GetBottomBorder();
 		for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
 			Point* point = (*it);
 			if (m_bottomLine[point->GetX() - 1] == point->GetY()){
@@ -101,20 +99,34 @@ bool Game::StopComponent(Direction direction){
 			}
 		}
 	}
-	else{
-		for (std::vector<std::vector<int>>::iterator it = m_VLine.begin(); it != m_VLine.end(); ++it){
-			border = m_currentComponent->GetRightBorder();
-			for (std::vector<Point*>::iterator i = border.begin(); i != border.end(); ++i){
-				Point* point = (*i);
-				if (it->at(point->GetY() - 1) == point->GetX()){
-					return true;
+	else if (direction == RIGHT){
+		std::vector<Point*> border = m_currentComponent->GetRightBorder();
+		for (std::vector<Point*>::iterator i = border.begin(); i != border.end(); ++i){
+			Point* point = (*i);
+			int x = point->GetX();
+			int y = point->GetY();
+			if (m_VMap.find(x) != m_VMap.end()){
+				std::map<int, bool> rightLine = m_VMap.at(point->GetX());
+				if (rightLine.find(y) != rightLine.end()){
+					if (rightLine.at(y) == false){
+						return true;
+					}
 				}
 			}
-			border = m_currentComponent->GetLeftBorder();
-			for (std::vector<Point*>::iterator i = border.begin(); i != border.end(); ++i){
-				Point* point = (*i);
-				if (it->at(point->GetY() - 1) == point->GetX()){
-					return true;
+		}
+	}
+	else if (direction == LEFT){
+		std::vector<Point*> border = m_currentComponent->GetLeftBorder();
+		for (std::vector<Point*>::iterator i = border.begin(); i != border.end(); ++i){
+			Point* point = (*i);
+			int x = point->GetX();
+			int y = point->GetY();
+			if (m_VMap.find(x) != m_VMap.end()){
+				std::map<int, bool> leftLine = m_VMap.at(point->GetX());
+				if (leftLine.find(y) != leftLine.end()){
+					if (leftLine.at(y) == false){
+						return true;
+					}
 				}
 			}
 		}
@@ -123,11 +135,43 @@ bool Game::StopComponent(Direction direction){
 	return false;
 }
 void Game::UpdataBorder(){
-	std::vector<Point*> border = m_currentComponent->GetUpBorder();
-	for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
+	std::vector<Point*> bottomBorder = m_currentComponent->GetUpBorder();
+	for (std::vector<Point*>::iterator it = bottomBorder.begin(); it != bottomBorder.end(); ++it){
 		Point* point = (*it);
 		m_bottomLine[point->GetX() - 1] = point->GetY();
 	}
+	std::vector<Point*> leftBorder = m_currentComponent->GetLeftBorder();
+	for (std::vector<Point*>::iterator it = leftBorder.begin(); it != leftBorder.end(); ++it){
+		Point* point = (*it);
+		int x = point->GetX() + 1;
+		int y = point->GetY();
+		
+		if (m_VMap.find(x) != m_VMap.end()){
+			m_VMap.at(x).insert(std::pair<int, bool>(y, false));
+		}
+		else{
+			std::map<int, bool> leftLine;
+			leftLine.insert(std::pair<int, bool>(y, false));
+			m_VMap.insert(std::pair<int, std::map<int, bool>>(x, leftLine));
+		}
+	}
+
+	std::vector<Point*> rightBorder = m_currentComponent->GetRightBorder();
+	for (std::vector<Point*>::iterator it = rightBorder.begin(); it != rightBorder.end(); ++it){
+		Point* point = (*it);
+		int x = point->GetX() - 1;
+		int y = point->GetY();
+
+		if (m_VMap.find(x) != m_VMap.end()){
+			m_VMap.at(x).insert(std::pair<int, bool>(y, false));
+		}
+		else{
+			std::map<int, bool> rightLine;
+			rightLine.insert(std::pair<int, bool>(y, false));
+			m_VMap.insert(std::pair<int, std::map<int, bool>>(x, rightLine));
+		}
+	}
+
 }
 void Game::Update(){
 

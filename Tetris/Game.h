@@ -1,13 +1,13 @@
 #pragma once
 #include "Common.h"
-#include <vector>
+#include <map>
 class Timer;
 class Component;
 class Point;
 class Game{
 private:
 	Timer* m_timer;
-	std::vector<std::vector<int>> m_VLine;
+	std::map<int, std::map<int, bool>> m_VMap;
 	int m_leftLine[GAME_HEIGHT];
 	int m_bottomLine[GAME_WIDTH];
 	int m_rightLine[GAME_HEIGHT];
