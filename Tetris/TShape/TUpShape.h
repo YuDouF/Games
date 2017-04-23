@@ -6,6 +6,10 @@ public:
 	TUpShape(int parentX, int parentY);
 	~TUpShape();
 	void ChangeShapeDirection(Component*& shapeDirection);
+	std::vector<Point*> GetUpBorder();
+	std::vector<Point*> GetLeftBorder();
+	std::vector<Point*> GetBottomBorder();
+	std::vector<Point*> GetRightBorder();
 	void Display();
 	void Clean();
 };

@@ -13,12 +13,14 @@ Game::Game(){
 	CONSOLE_CURSOR_INFO cursor_info = { 1, 0 };
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
 	srand(time(0));
-	int current = rand() % 5;
-	int next = rand() % 5;
-	m_currentComponent = new ZVShape(36, 15);
-	m_nextComponent = new ZVShape(20, 10);
+	SHAPETYPE type = SHAPETYPE(rand() & 5);
+	m_currentComponent = CreateComponent(type);
+	type = SHAPETYPE(rand() & 5);
+	m_nextComponent = CreateComponent(type);
+
+	std::map<int, bool> bottomLine;
 	for (int i = 0; i < GAME_WIDTH; ++i){
-		m_bottomLine[i] = GAME_HEIGHT;
+		bottomLine.insert(std::pair<int, bool>(i, false));
 	}
 	std::map<int, bool> leftLine;
 	for (int i = 0; i < GAME_HEIGHT; ++i){
@@ -28,6 +30,9 @@ Game::Game(){
 	for (int i = 0; i < GAME_HEIGHT; ++i){
 		rightLine.insert(std::pair<int, bool>(i, false));
 	}
+
+	m_HMap.insert(std::pair<int, std::map<int, bool>>(GAME_HEIGHT, bottomLine));
+
 	m_VMap.insert(std::pair<int, std::map<int, bool>>(0, leftLine));
 	m_VMap.insert(std::pair<int, std::map<int, bool>>(GAME_WIDTH, rightLine));
 	/*m_timer = Timer::GetInstant();
@@ -36,22 +41,23 @@ Game::Game(){
 }
 Game::~Game(){}
 Component* Game::CreateComponent(int type){
+	int x = rand() % (GAME_WIDTH - 5) + 2;
 	Component* com = NULL;
 	switch (type){
 	case HSHAPE:
-		com = new HShape(5, 1);
+		com = new HShape(x, 1);
 		break;
 	case ISHAPE:
-		com = new IVShape(5, 1);
+		com = new IVShape(x, 1);
 		break;
 	case LSHAPE:
-		com = new LUpShape(5, 1);
+		com = new LUpShape(x, 1);
 		break;
 	case TSHAPE:
-		com = new TUpShape(5, 1);
+		com = new TUpShape(x, 1);
 		break;
 	case ZSHAPE:
-		com = new ZVShape(20, 15);
+		com = new ZVShape(x, 1);
 		break;
 	}
 	return com;
@@ -94,8 +100,15 @@ bool Game::StopComponent(Direction direction){
 		std::vector<Point*> border = m_currentComponent->GetBottomBorder();
 		for (std::vector<Point*>::iterator it = border.begin(); it != border.end(); ++it){
 			Point* point = (*it);
-			if (m_bottomLine[point->GetX() - 1] == point->GetY()){
-				return true;
+			int x = point->GetX();
+			int y = point->GetY();
+			if (m_HMap.find(y) != m_HMap.end()){
+				std::map<int, bool> bottomLine = m_HMap.at(y);
+				if (bottomLine.find(x) != bottomLine.end()){
+					if (bottomLine.at(x) == false){
+						return true;
+					}
+				}
 			}
 		}
 	}
@@ -106,7 +119,7 @@ bool Game::StopComponent(Direction direction){
 			int x = point->GetX();
 			int y = point->GetY();
 			if (m_VMap.find(x) != m_VMap.end()){
-				std::map<int, bool> rightLine = m_VMap.at(point->GetX());
+				std::map<int, bool> rightLine = m_VMap.at(x);
 				if (rightLine.find(y) != rightLine.end()){
 					if (rightLine.at(y) == false){
 						return true;
@@ -122,7 +135,7 @@ bool Game::StopComponent(Direction direction){
 			int x = point->GetX();
 			int y = point->GetY();
 			if (m_VMap.find(x) != m_VMap.end()){
-				std::map<int, bool> leftLine = m_VMap.at(point->GetX());
+				std::map<int, bool> leftLine = m_VMap.at(x);
 				if (leftLine.find(y) != leftLine.end()){
 					if (leftLine.at(y) == false){
 						return true;
@@ -138,7 +151,17 @@ void Game::UpdataBorder(){
 	std::vector<Point*> bottomBorder = m_currentComponent->GetUpBorder();
 	for (std::vector<Point*>::iterator it = bottomBorder.begin(); it != bottomBorder.end(); ++it){
 		Point* point = (*it);
-		m_bottomLine[point->GetX() - 1] = point->GetY();
+		int x = point->GetX();
+		int y = point->GetY();
+
+		if (m_HMap.find(y) != m_HMap.end()){
+			m_HMap.at(y).insert(std::pair<int, bool>(x, false));
+		}
+		else{
+			std::map<int, bool> bottomLine;
+			bottomLine.insert(std::pair<int, bool>(x, false));
+			m_HMap.insert(std::pair<int, std::map<int, bool>>(y, bottomLine));
+		}
 	}
 	std::vector<Point*> leftBorder = m_currentComponent->GetLeftBorder();
 	for (std::vector<Point*>::iterator it = leftBorder.begin(); it != leftBorder.end(); ++it){

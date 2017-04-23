@@ -21,8 +21,8 @@ void ZVShape::ChangeShapeDirection(Component*& shapeDirection){
 }
 std::vector<Point*> ZVShape::GetUpBorder(){
 	std::vector<Point*> upBorder;
-	Point* lfirst = new Point(m_parentX + 1, m_parentY);
-	Point* lsecond = new Point(m_parentX, m_parentY + 1);
+	Point* lfirst = new Point(m_parentX, m_parentY + 1);
+	Point* lsecond = new Point(m_parentX + 1, m_parentY);
 	upBorder.push_back(lfirst);
 	upBorder.push_back(lsecond);
 
@@ -31,9 +31,9 @@ std::vector<Point*> ZVShape::GetUpBorder(){
 std::vector<Point*> ZVShape::GetLeftBorder(){
 
 	std::vector<Point*> leftBorder;
-	Point* lfirst = new Point(m_parentX + 1, m_parentY);
-	Point* lsecond = new Point(m_parentX, m_parentY + 1);
-	Point* lthird = new Point(m_parentX, m_parentY + 2);
+	Point* lfirst = new Point(m_parentX + 1 - 1, m_parentY);
+	Point* lsecond = new Point(m_parentX - 1, m_parentY + 1);
+	Point* lthird = new Point(m_parentX - 1, m_parentY + 2);
 	leftBorder.push_back(lfirst);
 	leftBorder.push_back(lsecond);
 	leftBorder.push_back(lthird);
@@ -43,8 +43,8 @@ std::vector<Point*> ZVShape::GetLeftBorder(){
 std::vector<Point*> ZVShape::GetBottomBorder(){
 
 	std::vector<Point*> bottomLine;
-	Point* bfirst = new Point(m_parentX, m_parentY + 2);
-	Point* bsecond = new Point(m_parentX + 1, m_parentY + 1);
+	Point* bfirst = new Point(m_parentX, m_parentY + 2 + 1);
+	Point* bsecond = new Point(m_parentX + 1, m_parentY + 1 + 1);
 	bottomLine.push_back(bfirst);
 	bottomLine.push_back(bsecond);
 
@@ -54,9 +54,9 @@ std::vector<Point*> ZVShape::GetBottomBorder(){
 std::vector<Point*> ZVShape::GetRightBorder(){
 
 	std::vector<Point*> rightBorder;
-	Point* rfirst = new Point(m_parentX + 1, m_parentY);
-	Point* rsecond = new Point(m_parentX + 1, m_parentY + 1);
-	Point* rthird = new Point(m_parentX, m_parentY + 2);
+	Point* rfirst = new Point(m_parentX + 1 + 1, m_parentY);
+	Point* rsecond = new Point(m_parentX + 1 + 1, m_parentY + 1);
+	Point* rthird = new Point(m_parentX + 1, m_parentY + 2);
 	rightBorder.push_back(rfirst);
 	rightBorder.push_back(rsecond);
 	rightBorder.push_back(rthird);

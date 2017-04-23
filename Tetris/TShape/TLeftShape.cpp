@@ -19,6 +19,54 @@ void TLeftShape::ChangeShapeDirection(Component*& shapeDirection){
 
 	shapeDirection = new TUpShape(parentX, parentY);
 }
+std::vector<Point*> TLeftShape::GetUpBorder(){
+	std::vector<Point*> upBorder;
+	Point* lfirst = new Point(m_parentX, m_parentY);
+	Point* lsecond = new Point(m_parentX + 1, m_parentY + 1);
+	Point* lthird = new Point(m_parentX + 2, m_parentY + 1);
+	upBorder.push_back(lfirst);
+	upBorder.push_back(lsecond);
+	upBorder.push_back(lthird);
+
+	return upBorder;
+}
+std::vector<Point*> TLeftShape::GetLeftBorder(){
+
+	std::vector<Point*> leftBorder;
+	Point* lfirst = new Point(m_parentX - 1, m_parentY);
+	Point* lsecond = new Point(m_parentX - 1, m_parentY + 1);
+	Point* lthird = new Point(m_parentX - 1, m_parentY + 2);
+	leftBorder.push_back(lfirst);
+	leftBorder.push_back(lsecond);
+	leftBorder.push_back(lthird);
+
+	return leftBorder;
+}
+std::vector<Point*> TLeftShape::GetBottomBorder(){
+
+	std::vector<Point*> bottomLine;
+	Point* bfirst = new Point(m_parentX, m_parentY + 2 + 1);
+	Point* bsecond = new Point(m_parentX + 1, m_parentY + 1 + 1);
+	Point* bthird = new Point(m_parentX + 2, m_parentY + 1 + 1);
+	bottomLine.push_back(bfirst);
+	bottomLine.push_back(bsecond);
+	bottomLine.push_back(bthird);
+
+	return bottomLine;
+}
+
+std::vector<Point*> TLeftShape::GetRightBorder(){
+
+	std::vector<Point*> rightBorder;
+	Point* rfirst = new Point(m_parentX + 1, m_parentY);
+	Point* rsecond = new Point(m_parentX + 2 + 1, m_parentY + 1);
+	Point* rthird = new Point(m_parentX + 1, m_parentY + 2);
+	rightBorder.push_back(rfirst);
+	rightBorder.push_back(rsecond);
+	rightBorder.push_back(rthird);
+
+	return rightBorder;
+}
 void TLeftShape::Display(){
 	for (int y = 0; y < 3; ++y){
 		for (int x = 0; x < 2; ++x){

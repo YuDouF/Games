@@ -19,6 +19,50 @@ void LRightShape::ChangeShapeDirection(Component*& shapeDirection){
 
 	shapeDirection = new LDownShape(parentX, parentY);
 }
+std::vector<Point*> LRightShape::GetUpBorder(){
+	std::vector<Point*> upBorder;
+	Point* lfirst = new Point(m_parentX, m_parentY + 2);
+	Point* lsecond = new Point(m_parentX + 1, m_parentY);
+	Point* lthird = new Point(m_parentX + 2, m_parentY + 2);
+	upBorder.push_back(lfirst);
+	upBorder.push_back(lsecond);
+	upBorder.push_back(lthird);
+
+	return upBorder;
+}
+std::vector<Point*> LRightShape::GetLeftBorder(){
+
+	std::vector<Point*> leftBorder;
+	Point* lfirst = new Point(m_parentX - 1, m_parentY);
+	Point* lsecond = new Point(m_parentX - 1, m_parentY + 1);
+	leftBorder.push_back(lfirst);
+	leftBorder.push_back(lsecond);
+
+	return leftBorder;
+}
+std::vector<Point*> LRightShape::GetBottomBorder(){
+
+	std::vector<Point*> bottomLine;
+	Point* bfirst = new Point(m_parentX, m_parentY + 1 + 1);
+	Point* bsecond = new Point(m_parentX + 1, m_parentY + 1);
+	Point* bthird = new Point(m_parentX + 2, m_parentY + 1);
+	bottomLine.push_back(bfirst);
+	bottomLine.push_back(bsecond);
+	bottomLine.push_back(bthird);
+
+	return bottomLine;
+}
+
+std::vector<Point*> LRightShape::GetRightBorder(){
+
+	std::vector<Point*> rightBorder;
+	Point* rfirst = new Point(m_parentX + 2 + 1, m_parentY);
+	Point* rsecond = new Point(m_parentX + 1, m_parentY + 1);
+	rightBorder.push_back(rfirst);
+	rightBorder.push_back(rsecond);
+
+	return rightBorder;
+}
 void LRightShape::Display(){
 	for (int y = 0; y < 2; ++y){
 		for (int x = 0; x < 3; ++x){

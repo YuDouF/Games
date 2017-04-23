@@ -8,9 +8,7 @@ class Game{
 private:
 	Timer* m_timer;
 	std::map<int, std::map<int, bool>> m_VMap;
-	int m_leftLine[GAME_HEIGHT];
-	int m_bottomLine[GAME_WIDTH];
-	int m_rightLine[GAME_HEIGHT];
+	std::map<int, std::map<int, bool>> m_HMap;
 	Component* m_currentComponent;
 	Component* m_nextComponent;
 
