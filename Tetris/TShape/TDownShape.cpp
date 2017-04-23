@@ -19,17 +19,17 @@ void TDownShape::ChangeShapeDirection(Component*& shapeDirection){
 
 	shapeDirection = new TLeftShape(parentX, parentY);
 }
-std::vector<Point*> TDownShape::GetUpBorder(){
-	std::vector<Point*> upBorder;
-	Point* lfirst = new Point(m_parentX, m_parentY + 1);
-	Point* lsecond = new Point(m_parentX + 1, m_parentY);
-	Point* lthird = new Point(m_parentX + 2, m_parentY + 1);
-	upBorder.push_back(lfirst);
-	upBorder.push_back(lsecond);
-	upBorder.push_back(lthird);
-
-	return upBorder;
-}
+//std::vector<Point*> TDownShape::GetUpBorder(){
+//	std::vector<Point*> upBorder;
+//	Point* lfirst = new Point(m_parentX, m_parentY + 1);
+//	Point* lsecond = new Point(m_parentX + 1, m_parentY);
+//	Point* lthird = new Point(m_parentX + 2, m_parentY + 1);
+//	upBorder.push_back(lfirst);
+//	upBorder.push_back(lsecond);
+//	upBorder.push_back(lthird);
+//
+//	return upBorder;
+//}
 std::vector<Point*> TDownShape::GetLeftBorder(){
 
 	std::vector<Point*> leftBorder;
@@ -62,6 +62,15 @@ std::vector<Point*> TDownShape::GetRightBorder(){
 	rightBorder.push_back(rthird);
 
 	return rightBorder;
+}
+std::vector<Point*> TDownShape::GetLocation() const{
+	std::vector<Point*> temp;
+	temp.push_back(new Point(m_parentX + 1, m_parentY));
+	temp.push_back(new Point(m_parentX, m_parentY + 1));
+	temp.push_back(new Point(m_parentX + 1, m_parentY + 1));
+	temp.push_back(new Point(m_parentX + 2, m_parentY + 1));
+
+	return temp;
 }
 void TDownShape::Display(){
 	for (int y = 0; y < 2; ++y){

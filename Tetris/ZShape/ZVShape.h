@@ -7,10 +7,11 @@ public:
 	ZVShape(int parentX, int parentY);
 	~ZVShape();
 	void ChangeShapeDirection(Component*& shapeDirection);
-	std::vector<Point*> GetUpBorder();
+	//std::vector<Point*> GetUpBorder();
 	std::vector<Point*> GetLeftBorder();
 	std::vector<Point*> GetBottomBorder();
 	std::vector<Point*> GetRightBorder();
+	std::vector<Point*> GetLocation() const;
 
 	void Display();
 	void Clean();

@@ -16,17 +16,17 @@ void IHShape::ChangeShapeDirection(Component*& shapeDirection){
 
 	shapeDirection = new IVShape(++parentX, parentY);
 }
-std::vector<Point*> IHShape::GetUpBorder(){
-	std::vector<Point*> upBorder;
-	Point* lfirst = new Point(m_parentX, m_parentY);
-	Point* lsecond = new Point(m_parentX + 1, m_parentY);
-	Point* lthird = new Point(m_parentX + 2, m_parentY);
-	upBorder.push_back(lfirst);
-	upBorder.push_back(lsecond);
-	upBorder.push_back(lthird);
-
-	return upBorder;
-}
+//std::vector<Point*> IHShape::GetUpBorder(){
+//	std::vector<Point*> upBorder;
+//	Point* lfirst = new Point(m_parentX, m_parentY);
+//	Point* lsecond = new Point(m_parentX + 1, m_parentY);
+//	Point* lthird = new Point(m_parentX + 2, m_parentY);
+//	upBorder.push_back(lfirst);
+//	upBorder.push_back(lsecond);
+//	upBorder.push_back(lthird);
+//
+//	return upBorder;
+//}
 std::vector<Point*> IHShape::GetLeftBorder(){
 
 	std::vector<Point*> leftBorder;
@@ -55,6 +55,14 @@ std::vector<Point*> IHShape::GetRightBorder(){
 	rightBorder.push_back(rfirst);
 
 	return rightBorder;
+}
+std::vector<Point*> IHShape::GetLocation() const{
+	std::vector<Point*> temp;
+	temp.push_back(new Point(m_parentX, m_parentY));
+	temp.push_back(new Point(m_parentX + 1, m_parentY));
+	temp.push_back(new Point(m_parentX + 2, m_parentY));
+
+	return temp;
 }
 void IHShape::Display(){
 	for (int y = 0; y < 1; ++y){

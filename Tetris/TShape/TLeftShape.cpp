@@ -19,15 +19,15 @@ void TLeftShape::ChangeShapeDirection(Component*& shapeDirection){
 
 	shapeDirection = new TUpShape(parentX, parentY);
 }
-std::vector<Point*> TLeftShape::GetUpBorder(){
-	std::vector<Point*> upBorder;
-	Point* lfirst = new Point(m_parentX, m_parentY);
-	Point* lsecond = new Point(m_parentX + 1, m_parentY + 1);
-	upBorder.push_back(lfirst);
-	upBorder.push_back(lsecond);
-
-	return upBorder;
-}
+//std::vector<Point*> TLeftShape::GetUpBorder(){
+//	std::vector<Point*> upBorder;
+//	Point* lfirst = new Point(m_parentX, m_parentY);
+//	Point* lsecond = new Point(m_parentX + 1, m_parentY + 1);
+//	upBorder.push_back(lfirst);
+//	upBorder.push_back(lsecond);
+//
+//	return upBorder;
+//}
 std::vector<Point*> TLeftShape::GetLeftBorder(){
 
 	std::vector<Point*> leftBorder;
@@ -62,6 +62,15 @@ std::vector<Point*> TLeftShape::GetRightBorder(){
 	rightBorder.push_back(rthird);
 
 	return rightBorder;
+}
+std::vector<Point*> TLeftShape::GetLocation() const{
+	std::vector<Point*> temp;
+	temp.push_back(new Point(m_parentX, m_parentY));
+	temp.push_back(new Point(m_parentX, m_parentY + 1));
+	temp.push_back(new Point(m_parentX + 1, m_parentY + 1));
+	temp.push_back(new Point(m_parentX, m_parentY + 2));
+
+	return temp;
 }
 void TLeftShape::Display(){
 	for (int y = 0; y < 3; ++y){

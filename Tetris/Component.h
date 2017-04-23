@@ -13,10 +13,11 @@ public:
 	virtual void Display() = 0;
 	virtual void Clean() = 0;
 	void Move(Component*& comp, Direction direction);
-	virtual std::vector<Point*> GetUpBorder() = 0;
+	//virtual std::vector<Point*> GetUpBorder() = 0;
 	virtual std::vector<Point*> GetLeftBorder() = 0;
 	virtual std::vector<Point*> GetBottomBorder() = 0;
 	virtual std::vector<Point*> GetRightBorder() = 0;
+	virtual std::vector<Point*> GetLocation() const = 0;
 	
 	void SetParentX(int x);
 	int GetParentX();

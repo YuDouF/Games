@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
-const int GAME_WIDTH = 19;
-const int GAME_HEIGHT = 10;
+const int GAME_WIDTH = 20;
+const int GAME_HEIGHT = 25;
 
 enum SHAPETYPE{
 	HSHAPE,

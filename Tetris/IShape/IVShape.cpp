@@ -16,13 +16,13 @@ void IVShape::ChangeShapeDirection(Component*& shapeDirection){
 
 	shapeDirection = new IHShape(--parentX, parentY);
 }
-std::vector<Point*> IVShape::GetUpBorder(){
-	std::vector<Point*> upBorder;
-	Point* lfirst = new Point(m_parentX, m_parentY);
-	upBorder.push_back(lfirst);
-
-	return upBorder;
-}
+//std::vector<Point*> IVShape::GetUpBorder(){
+//	std::vector<Point*> upBorder;
+//	Point* lfirst = new Point(m_parentX, m_parentY);
+//	upBorder.push_back(lfirst);
+//
+//	return upBorder;
+//}
 std::vector<Point*> IVShape::GetLeftBorder(){
 
 	std::vector<Point*> leftBorder;
@@ -55,6 +55,14 @@ std::vector<Point*> IVShape::GetRightBorder(){
 	rightBorder.push_back(rthird);
 
 	return rightBorder;
+}
+std::vector<Point*> IVShape::GetLocation() const{
+	std::vector<Point*> temp;
+	temp.push_back(new Point(m_parentX, m_parentY));
+	temp.push_back(new Point(m_parentX, m_parentY + 1));
+	temp.push_back(new Point(m_parentX, m_parentY + 2));
+
+	return temp;
 }
 void IVShape::Display(){
 	for (int y = 0; y < 3; ++y){
