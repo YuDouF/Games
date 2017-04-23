@@ -14,8 +14,8 @@ LDownShape::~LDownShape(){}
 void LDownShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
-	Clean();
-	delete shapeDirection;
+	//Clean();
+	//delete shapeDirection;
 
 	shapeDirection = new LLeftShape(parentX, parentY);
 }

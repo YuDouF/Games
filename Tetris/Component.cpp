@@ -5,21 +5,24 @@ Component::~Component(){}
 
 void Component::Move(Component*& comp, Direction direction){
 	Clean();
-	switch (direction){
-	case UP:
+	if (direction == UP){
 		comp->ChangeShapeDirection(comp);
-		break;
-	case RIGHT:
-		++m_parentX;
-		break;
-	case DOWN:
-		++m_parentY;
-		break;
-	case LEFT:
-		--m_parentX;
-		break;
+		comp->Display();
 	}
-	Display();
+	else{
+		switch (direction){
+		case RIGHT:
+			++m_parentX;
+			break;
+		case DOWN:
+			++m_parentY;
+			break;
+		case LEFT:
+			--m_parentX;
+			break;
+		}
+		Display();
+	}
 }
 void Component::SetParentX(int x){
 	m_parentX = x;

@@ -14,7 +14,7 @@ LUpShape::~LUpShape(){}
 void LUpShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
-	Clean();
+	//Clean();
 	delete shapeDirection;
 	
 	shapeDirection = new LRightShape(parentX, parentY);
@@ -45,10 +45,8 @@ std::vector<Point*> LUpShape::GetBottomBorder(){
 	std::vector<Point*> bottomLine;
 	Point* bfirst = new Point(m_parentX, m_parentY + 2 + 1);
 	Point* bsecond = new Point(m_parentX + 1, m_parentY + 2 + 1);
-	Point* bthird = new Point(m_parentX + 2, m_parentY + 2 + 1);
 	bottomLine.push_back(bfirst);
 	bottomLine.push_back(bsecond);
-	bottomLine.push_back(bthird);
 
 	return bottomLine;
 }

@@ -12,7 +12,7 @@ private:
 	Component* m_currentComponent;
 	Component* m_nextComponent;
 
-	Component* CreateComponent(int type);
+	Component* CreateComponent(SHAPETYPE type);
 	bool StopComponent(Direction direction);
 	void UpdataBorder();
 	void UpdateGame();

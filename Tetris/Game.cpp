@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Common.h"
+#include <ctime>
 #include "HShape\HShape.h"
 #include "IShape\IVShape.h"
 #include "LShape\LUpShape.h"
@@ -13,9 +14,9 @@ Game::Game(){
 	CONSOLE_CURSOR_INFO cursor_info = { 1, 0 };
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
 	srand(time(0));
-	SHAPETYPE type = SHAPETYPE(rand() & 5);
+	SHAPETYPE type = SHAPETYPE(rand() % 5);
 	m_currentComponent = CreateComponent(type);
-	type = SHAPETYPE(rand() & 5);
+	type = SHAPETYPE(rand() % 5);
 	m_nextComponent = CreateComponent(type);
 
 	std::map<int, bool> bottomLine;
@@ -40,7 +41,7 @@ Game::Game(){
 	m_timer->SetUpdateFunc(&Game::UpdateGame);*/
 }
 Game::~Game(){}
-Component* Game::CreateComponent(int type){
+Component* Game::CreateComponent(SHAPETYPE type){
 	int x = rand() % (GAME_WIDTH - 5) + 2;
 	Component* com = NULL;
 	switch (type){
@@ -92,7 +93,9 @@ void Game::ComponentMove(Direction direction){
 	else if (direction == DOWN){
 		UpdataBorder();
 		m_currentComponent = m_nextComponent;
-		m_nextComponent = new ZVShape(20, 1);
+		srand(time(0));
+		SHAPETYPE type = SHAPETYPE(rand() % 5);
+		m_nextComponent = CreateComponent(type);
 	}
 }
 bool Game::StopComponent(Direction direction){

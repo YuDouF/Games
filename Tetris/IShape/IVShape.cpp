@@ -11,7 +11,7 @@ IVShape::~IVShape(){}
 void IVShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
-	Clean();
+	//Clean();
 	delete shapeDirection;
 
 	shapeDirection = new IHShape(--parentX, parentY);

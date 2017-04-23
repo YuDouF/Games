@@ -14,7 +14,7 @@ LLeftShape::~LLeftShape(){}
 void LLeftShape::ChangeShapeDirection(Component*& shapeDirection){
 	int parentX = m_parentX;
 	int parentY = m_parentY;
-	Clean();
+	//Clean();
 	delete shapeDirection;
 
 	shapeDirection = new LUpShape(parentX, parentY);
