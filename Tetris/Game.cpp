@@ -18,7 +18,7 @@ Game::Game(){
 	m_currentComponent = CreateComponent(type);
 	type = SHAPETYPE(rand() % 5);
 	m_nextComponent = CreateComponent(type);
-	
+
 	for (int y = 0; y < GAME_HEIGHT; ++y){
 		for (int x = 0; x < GAME_WIDTH; ++x){
 			if (y == 0 || y == GAME_HEIGHT - 1 || x == 0 || x == GAME_WIDTH - 1){
@@ -78,9 +78,16 @@ void Game::StartGame(){
 }
 void Game::ComponentMove(Direction direction){
 	if (!StopComponent(direction)){
-		/*if (direction == UP){
-			return;
-		}*/
+		m_currentComponent->Clean();
+		if (direction == UP && StopComponent(RIGHT)){
+			if (!StopComponent(LEFT)){
+				m_currentComponent->SetParentX(m_currentComponent->GetParentX() - 1);
+			}
+			else{
+				direction = DOWN;
+			}
+		}
+
 		m_currentComponent->Move(m_currentComponent, direction);
 	}
 	else if (direction == DOWN){
@@ -151,7 +158,7 @@ void Game::Remove(){
 		else{
 			x = 1;
 		}
-	}	
+	}
 }
 bool Game::StopComponent(Direction direction){
 	std::vector<Point*> border;

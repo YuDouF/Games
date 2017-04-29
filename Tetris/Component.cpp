@@ -4,7 +4,6 @@ Component::Component(int parentX, int parentY) : m_parentX(parentX), m_parentY(p
 Component::~Component(){}
 
 void Component::Move(Component*& comp, Direction direction){
-	Clean();
 	if (direction == UP){
 		comp->ChangeShapeDirection(comp);
 		comp->Display();
