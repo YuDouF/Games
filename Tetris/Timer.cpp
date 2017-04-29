@@ -8,8 +8,9 @@ DWORD WINAPI funproc(LPVOID lpparentet)
 	startTime = endTime = clock();
 	while (!timer->m_close){
 		endTime = clock();
-		if (endTime - startTime >= timer->m_speed){
-		
+		if (endTime - startTime >= 1000){
+			((timer->m_game)->*(timer->m_updateFunc))();
+			startTime = endTime;
 		}
 	}
 	return 0;
@@ -23,7 +24,7 @@ Timer* Timer::GetInstant(){
 }
 Timer::Timer(){
 	m_close = false;
-	m_speed = 500;
+	m_speed = 10000;
 }
 Timer::~Timer(){}
 void Timer::SetGame(Game* game){

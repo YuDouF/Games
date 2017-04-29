@@ -13,8 +13,9 @@ enum SHAPETYPE{
 enum Direction{
 	UP = 72,
 	RIGHT = 77,
-	DOWN = 80,
-	LEFT = 75
+	AutoDOWN = 80,
+	LEFT = 75,
+	DOWN = 70
 };
 static void CursorToPos(int x, int y){
 	COORD c;
